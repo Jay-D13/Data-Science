@@ -1,0 +1,29 @@
+FROM python:3.10-slim AS base-image
+
+# Définir le répertoire de travail
+WORKDIR /code
+
+# Définir l'encodage en utf-8
+ENV LANG=C.UTF-8
+
+# Pas besoin de fichiers .pyc dans un constructeur
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Permettre d'afficher immédiatement les instructions et les messages de journalisation
+ENV PYTHONUNBUFFERED=1
+
+# Nous n'avons pas besoin de l'avertissement de vérification de version PIP
+ENV PIP_DISABLE_PIP_VERSION_CHECK=on
+
+# Ajouter venv au PATH
+ENV PATH="/venv/bin:$PATH"
+
+# Mettre à jour les paquets au niveau du système d'exploitation
+RUN apt-get update && apt-get -y upgrade
+
+# Configurer venv
+RUN python -m venv /venv
+
+# Installer les dépendances Python
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt

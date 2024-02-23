@@ -1,0 +1,24 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    id: build-base-image
+    args:
+      ["build", 
+      "--tag", 
+      "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/base-image:${BUILD_ID}", 
+      "--tag", 
+      "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/base-image:latest", 
+      "-f", 
+      "Dockerfile.base", 
+      "."]
+  
+  - name: "gcr.io/cloud-builders/docker"
+    id: push-base-image
+    args:
+      ["push",
+      "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/base-image:${BUILD_ID}"]
+
+  - name: "gcr.io/cloud-builders/docker"
+    id: push-base-image-latest
+    args:
+      ["push",
+      "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/base-image:latest"]

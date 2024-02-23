@@ -1,0 +1,7 @@
+services:
+  v1:
+    front_end: https://frontend-v1-ez4gsr5e6a-nn.a.run.app
+    back_end: https://backend-v1-ez4gsr5e6a-nn.a.run.app
+  v2:
+    front_end: https://frontend-v2-ez4gsr5e6a-nn.a.run.app
+    back_end:  https://backend-v2-ez4gsr5e6a-nn.a.run.app

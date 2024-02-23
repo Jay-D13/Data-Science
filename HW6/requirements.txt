@@ -1,0 +1,12 @@
+lime
+matplotlib  
+nltk        
+numpy       
+pandas       
+scikit-learn 
+seaborn
+# Si vous effectuez l'entraînement localement
+torch
+transformers
+datasets
+accelerate

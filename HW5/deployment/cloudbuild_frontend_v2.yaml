@@ -1,0 +1,59 @@
+steps:
+  # - name: "gcr.io/cloud-builders/docker"
+  #   id: build-base-image
+  #   args:
+  #     ["build", 
+  #     "--tag", 
+  #     "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/base-image:${BUILD_ID}", 
+  #     "--tag", 
+  #     "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/base-image:latest", 
+  #     "-f", 
+  #     "Dockerfile.base", 
+  #     "."]
+  
+  # - name: "gcr.io/cloud-builders/docker"
+  #   id: push-base-image
+  #   args:
+  #     ["push",
+  #     "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/base-image:${BUILD_ID}"]
+
+  # - name: "gcr.io/cloud-builders/docker"
+  #   id: push-base-image-latest
+  #   args:
+  #     ["push",
+  #     "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/base-image:latest"]
+
+  - name: "gcr.io/cloud-builders/docker"
+    id: pull-base-image
+    args:
+      ["pull",
+      "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/base-image:latest"]
+  
+  - name: "gcr.io/cloud-builders/docker"
+    id: build-frontend_v2-image
+    args:
+      ["build", 
+      "--tag", 
+      "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/frontend_v2:${BUILD_ID}",
+      "--tag", 
+      "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/frontend_v2:latest",
+      "--build-arg",
+      "BASE_IMAGE_URI=northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/base-image:latest",
+      "--build-arg",
+      "SERVING_PORT=8080",
+      "-f", 
+      "Dockerfile.frontend_v2", 
+      "."]
+  
+  - name: "gcr.io/cloud-builders/docker"
+    id: push-frontend_v2-image
+    args:
+      ["push",
+      "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/frontend_v2:${BUILD_ID}"]
+
+  - name: "gcr.io/cloud-builders/docker"
+    id: push-frontend_v2-image-latest
+    args:
+      ["push",
+      "northamerica-northeast1-docker.pkg.dev/ift6758-hw5-405618/ift6758-hw5/frontend_v2:latest"]
+
